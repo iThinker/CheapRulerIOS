@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary          = "Swift port of https://github.com/mapbox/cheap-ruler"
 
   s.description      = <<-DESC
-This is a direct port of "cheap-ruler" javascript library.
+Swift port of cheap-ruler by @mourner, @anandthakker, @tcql and mapbox (https://github.com/mapbox/cheap-ruler). Check out their repo for details.
                        DESC
 
   s.homepage         = "https://github.com/iThinker/CheapRulerIOS"

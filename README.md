@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)
 [![Platform](https://img.shields.io/cocoapods/p/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)
 
+Swift port of cheap-ruler by @mourner, @anandthakker, @tcql and mapbox (https://github.com/mapbox/cheap-ruler). Check out their repo for details. 
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -22,7 +24,7 @@ pod "CheapRulerIOS"
 
 ## Author
 
-Roman, temchenko.r@gmail.com
+Swift Port - Roman Temchenko, temchenko.r@gmail.com
 
 ## License
 

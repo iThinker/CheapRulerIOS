@@ -1,6 +1,6 @@
 # CheapRulerIOS
 
-[![CI Status](http://img.shields.io/travis/Roman/CheapRulerIOS.svg?style=flat)](https://travis-ci.org/Roman/CheapRulerIOS)
+[![CI Status](http://img.shields.io/travis/iThinker/CheapRulerIOS.svg?style=flat)](https://travis-ci.org/iThinker/CheapRulerIOS)
 [![Version](https://img.shields.io/cocoapods/v/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)
 [![License](https://img.shields.io/cocoapods/l/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)
 [![Platform](https://img.shields.io/cocoapods/p/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)

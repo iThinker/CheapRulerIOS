@@ -94,7 +94,7 @@ class CheapRuler {
                 let pj = ring[j]
                 let pk = ring[k]
                 sum += (pj[0] - pk[0]) * (pj[1] + pk[1]) * (i != 0 ? -1 : 1)
-                k = j - 1
+                k = j
             }
         }
         

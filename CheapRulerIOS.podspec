@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "CheapRulerIOS"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "Swift port of https://github.com/mapbox/cheap-ruler"
 
   s.description      = <<-DESC

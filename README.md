@@ -24,7 +24,7 @@ pod "CheapRulerIOS"
 
 ## Author
 
-Swift Port - Roman Temchenko, temchenko.r@gmail.com
+Roman Temchenko, temchenko.r@gmail.com
 
 ## License
 

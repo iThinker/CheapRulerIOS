@@ -1,0 +1,6 @@
+use_frameworks!
+target 'CheapRulerIOS_Tests' do
+  pod 'CheapRulerIOS', :path => '../'
+  
+  
+end

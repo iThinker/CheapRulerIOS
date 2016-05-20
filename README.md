@@ -1,0 +1,29 @@
+# CheapRulerIOS
+
+[![CI Status](http://img.shields.io/travis/Roman/CheapRulerIOS.svg?style=flat)](https://travis-ci.org/Roman/CheapRulerIOS)
+[![Version](https://img.shields.io/cocoapods/v/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)
+[![License](https://img.shields.io/cocoapods/l/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)
+[![Platform](https://img.shields.io/cocoapods/p/CheapRulerIOS.svg?style=flat)](http://cocoapods.org/pods/CheapRulerIOS)
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+CheapRulerIOS is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "CheapRulerIOS"
+```
+
+## Author
+
+Roman, temchenko.r@gmail.com
+
+## License
+
+CheapRulerIOS is available under the MIT license. See the LICENSE file for more info.

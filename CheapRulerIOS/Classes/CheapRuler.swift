@@ -12,13 +12,13 @@ import CoreLocation
 
 public class CheapRuler {
     public enum Factor: Double {
-        case kilometers = 1
-        case miles = 0.62137119
-        case nauticalmiles = 0.5399568
-        case meters = 1000
-        case yards = 1093.6133
-        case feet = 3280.8399
-        case inches = 39370.0787
+        case Kilometers = 1
+        case Miles = 0.62137119
+        case Nauticalmiles = 0.5399568
+        case Meters = 1000
+        case Yards = 1093.6133
+        case Feet = 3280.8399
+        case Inches = 39370.0787
     }
     
     var cos1: Double

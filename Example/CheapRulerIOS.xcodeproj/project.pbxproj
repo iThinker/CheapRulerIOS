@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		E94075231CF004DE00628BBD /* lines.json in Resources */ = {isa = PBXBuildFile; fileRef = E94075221CF004DE00628BBD /* lines.json */; };
+		E94075261CF0086500628BBD /* expectations.json in Resources */ = {isa = PBXBuildFile; fileRef = E94075251CF0086500628BBD /* expectations.json */; };
 		EF916E92705854A1B1B77A92 /* Pods_CheapRulerIOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC20A2A25A10E71EAC9E7EB /* Pods_CheapRulerIOS_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +23,8 @@
 		9A1CE01DBD17E72F4A18274C /* Pods-CheapRulerIOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheapRulerIOS_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CheapRulerIOS_Tests/Pods-CheapRulerIOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A1733B35872C1A0383B7C0F3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AFC20A2A25A10E71EAC9E7EB /* Pods_CheapRulerIOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheapRulerIOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E94075221CF004DE00628BBD /* lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lines.json; sourceTree = "<group>"; };
+		E94075251CF0086500628BBD /* expectations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = expectations.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 		607FACE91AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E94075251CF0086500628BBD /* expectations.json */,
+				E94075221CF004DE00628BBD /* lines.json */,
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -160,6 +166,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E94075261CF0086500628BBD /* expectations.json in Resources */,
+				E94075231CF004DE00628BBD /* lines.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

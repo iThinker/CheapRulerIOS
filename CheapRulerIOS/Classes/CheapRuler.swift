@@ -13,12 +13,12 @@ import CoreLocation
 public class CheapRuler {
     public enum Factor: Double {
         case Kilometers = 1
-        case Miles = 0.62137119
-        case Nauticalmiles = 0.5399568
+        case Miles = 0.62137119223733395
+        case Nauticalmiles = 0.5399568034557235
         case Meters = 1000
-        case Yards = 1093.6133
-        case Feet = 3280.8399
-        case Inches = 39370.0787
+        case Yards = 1093.6132983377079
+        case Feet = 3280.8398950131232
+        case Inches = 39370.078740157485
     }
     
     var cos1: Double
@@ -184,7 +184,7 @@ public class CheapRuler {
             slice.append(line[l])
         }
         
-        for i in l + 1 ... r {
+        for i in (l + 1).stride(through: r, by: 1) {
             slice.append(line[i])
         }
         

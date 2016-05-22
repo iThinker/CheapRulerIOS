@@ -77,7 +77,7 @@ public class CheapRuler {
     public func lineDistance (points: [[CLLocationDegrees]]) -> CLLocationDistance {
         var total = 0.0
         
-        for i in 0 ..< points.count - 1 {
+        for i in 0.stride(to: points.count - 1, by: 1)  {
             total += self.distance(points[i], b: points[i + 1])
         }
         return total
@@ -86,11 +86,11 @@ public class CheapRuler {
     public func area (polygon: [[[CLLocationDegrees]]]) -> Double {
         var sum = 0.0
         
-        for i in 0 ..< polygon.count {
+        for i in 0.stride(to: polygon.count, by: 1) {
             var ring = polygon[i]
             
             var k = ring.count - 1
-            for j in 0 ..< ring.count {
+            for j in 0.stride(to: ring.count, by: 1) {
                 let pj = ring[j]
                 let pk = ring[k]
                 sum += (pj[0] - pk[0]) * (pj[1] + pk[1]) * (i != 0 ? -1 : 1)
@@ -106,7 +106,7 @@ public class CheapRuler {
         
         if (dist <= 0) { return line[0] }
         
-        for i in 0 ..< line.count - 1 {
+        for i in 0.stride(to: line.count - 1, by: 1) {
             let p0 = line[i]
             let p1 = line[i + 1]
             let d = self.distance(p0, b: p1)
@@ -124,7 +124,7 @@ public class CheapRuler {
         var minT = 0.0
         var minI = 0
         
-        for i in 0 ..< line.count - 1 {
+        for i in 0.stride(to: line.count - 1, by: 1) {
             var t = 0.0
             var x = line[i][0]
             var y = line[i][1]
@@ -199,7 +199,7 @@ public class CheapRuler {
         var sum = 0.0
         var slice:[[CLLocationDegrees]] = []
         
-        for i in 0 ..< line.count - 1 {
+        for i in 0.stride(to: line.count - 1, by: 1) {
             let p0 = line[i]
             let p1 = line[i + 1]
             let d = self.distance(p0, b: p1)

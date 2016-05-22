@@ -17,7 +17,8 @@ class Tests: XCTestCase {
         self.ruler = CheapRuler(lat: 32.8351, units: nil)
         self.milesRuler = CheapRuler(lat: 32.8351, units: CheapRuler.Factor.Miles)
         
-        if lines == nil {
+        var token: dispatch_once_t = 0
+        dispatch_once(&token) {
             let linesPath = NSBundle(forClass: self.dynamicType).pathForResource("lines", ofType: "json")
             let expectationsPath = NSBundle(forClass: self.dynamicType).pathForResource("expectations", ofType: "json")
             do {

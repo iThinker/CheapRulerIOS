@@ -15,6 +15,4 @@ Swift port of cheap-ruler by @mourner, @anandthakker, @tcql and mapbox (https://
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'CheapRulerIOS/Classes/**/*'
-
-  s.frameworks = 'CoreLocation'
 end

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreLocation
 
 
 public class CheapRuler {
@@ -30,7 +29,7 @@ public class CheapRuler {
     var kx: Double
     var ky: Double
     
-    public init(lat: CLLocationDegrees, units: Factor?) {
+    public init(lat: Double, units: Factor?) {
         let m = (units != nil) ? units!.rawValue : 1
         
         self.cos1 = cos(lat * M_PI / 180)
@@ -51,13 +50,13 @@ public class CheapRuler {
         self.init(lat: lat, units: units)
     }
     
-    public func distance (a: [CLLocationDegrees], b: [CLLocationDegrees]) -> CLLocationDistance {
+    public func distance (a: [Double], b: [Double]) -> Double {
         let dx = (a[0] - b[0]) * self.kx
         let dy = (a[1] - b[1]) * self.ky
         return sqrt(dx * dx + dy * dy)
     }
     
-    public func bearing (a: [CLLocationDegrees], b: [CLLocationDegrees]) -> CLLocationDirection {
+    public func bearing (a: [Double], b: [Double]) -> Double {
         let dx = (b[0] - a[0]) * self.kx
         let dy = (b[1] - a[1]) * self.ky
         if (dx == 0 && dy == 0) { return 0 }
@@ -66,7 +65,7 @@ public class CheapRuler {
         return bearing
     }
     
-    public func destination (p: [CLLocationDegrees], dist: CLLocationDistance, bearing: CLLocationDirection) -> [CLLocationDegrees] {
+    public func destination (p: [Double], dist: Double, bearing: Double) -> [Double] {
         let a = (90 - bearing) * M_PI / 180
         return [
             p[0] + cos(a) * dist / self.kx,
@@ -74,23 +73,23 @@ public class CheapRuler {
         ]
     }
     
-    public func lineDistance (points: [[CLLocationDegrees]]) -> CLLocationDistance {
+    public func lineDistance (points: [[Double]]) -> Double {
         var total = 0.0
         
-        for i in 0.stride(to: points.count - 1, by: 1)  {
-            total += self.distance(points[i], b: points[i + 1])
+        for i in stride(from:0, to: points.count - 1, by: 1)  {
+            total += self.distance(a: points[i], b: points[i + 1])
         }
         return total
     }
     
-    public func area (polygon: [[[CLLocationDegrees]]]) -> Double {
+    public func area (polygon: [[[Double]]]) -> Double {
         var sum = 0.0
         
-        for i in 0.stride(to: polygon.count, by: 1) {
+        for i in stride(from:0, to: polygon.count, by: 1) {
             var ring = polygon[i]
             
             var k = ring.count - 1
-            for j in 0.stride(to: ring.count, by: 1) {
+            for j in stride(from:0, to: ring.count, by: 1) {
                 let pj = ring[j]
                 let pk = ring[k]
                 sum += (pj[0] - pk[0]) * (pj[1] + pk[1]) * (i != 0 ? -1 : 1)
@@ -101,30 +100,30 @@ public class CheapRuler {
         return (abs(sum) / 2) * self.kx * self.ky
     }
     
-    public func along (line: [[CLLocationDegrees]], dist: CLLocationDistance) -> [CLLocationDegrees] {
+    public func along (line: [[Double]], dist: Double) -> [Double] {
         var sum = 0.0
         
         if (dist <= 0) { return line[0] }
         
-        for i in 0.stride(to: line.count - 1, by: 1) {
+        for i in stride(from:0, to: line.count - 1, by: 1) {
             let p0 = line[i]
             let p1 = line[i + 1]
-            let d = self.distance(p0, b: p1)
+            let d = self.distance(a: p0, b: p1)
             sum += d
-            if (sum > dist) { return interpolate(p0, b: p1, t: (dist - (sum - d)) / d) }
+            if (sum > dist) { return interpolate(a: p0, b: p1, t: (dist - (sum - d)) / d) }
         }
         
         return line[line.count - 1]
     }
     
-    public func pointOnLine (line: [[CLLocationDegrees]], p: [CLLocationDegrees]) -> (point: [CLLocationDegrees], index: Int, t: Double) {
+    public func pointOnLine (_ line: [[Double]], p: [Double]) -> (point: [Double], index: Int, t: Double) {
         var minDist = Double.infinity
         var minX = 0.0
         var minY = 0.0
         var minT = 0.0
         var minI = 0
         
-        for i in 0.stride(to: line.count - 1, by: 1) {
+        for i in stride(from:0, to: line.count - 1, by: 1) {
             var t = 0.0
             var x = line[i][0]
             var y = line[i][1]
@@ -165,7 +164,7 @@ public class CheapRuler {
         )
     }
     
-    public func lineSlice (start: [CLLocationDegrees], stop: [CLLocationDegrees], line: [[CLLocationDegrees]]) -> [[CLLocationDegrees]] {
+    public func lineSlice (start: [Double], stop: [Double], line: [[Double]]) -> [[Double]] {
         var p1 = self.pointOnLine(line, p: start)
         var p2 = self.pointOnLine(line, p: stop)
         
@@ -180,38 +179,38 @@ public class CheapRuler {
         let l = p1.index + 1
         let r = p2.index
         
-        if (!equals(line[l], b: slice[0]) && l <= r) {
+        if (!equals(a: line[l], b: slice[0]) && l <= r) {
             slice.append(line[l])
         }
         
-        for i in (l + 1).stride(through: r, by: 1) {
+        for i in stride(from:l + 1, through: r, by: 1) {
             slice.append(line[i])
         }
         
-        if (!equals(line[r], b: p2.point)) {
+        if (!equals(a: line[r], b: p2.point)) {
             slice.append(p2.point)
         }
         
         return slice
     }
     
-    public func lineSliceAlong (start: CLLocationDistance, stop: CLLocationDistance, line: [[CLLocationDegrees]]) -> [[CLLocationDegrees]] {
+    public func lineSliceAlong (start: Double, stop: Double, line: [[Double]]) -> [[Double]] {
         var sum = 0.0
-        var slice:[[CLLocationDegrees]] = []
+        var slice:[[Double]] = []
         
-        for i in 0.stride(to: line.count - 1, by: 1) {
+        for i in stride(from:0, to: line.count - 1, by: 1) {
             let p0 = line[i]
             let p1 = line[i + 1]
-            let d = self.distance(p0, b: p1)
+            let d = self.distance(a: p0, b: p1)
             
             sum += d
             
             if (sum > start && slice.count == 0) {
-                slice.append(interpolate(p0, b: p1, t: (start - (sum - d)) / d))
+                slice.append(interpolate(a: p0, b: p1, t: (start - (sum - d)) / d))
             }
             
             if (sum >= stop) {
-                slice.append(interpolate(p0, b: p1, t: (stop - (sum - d)) / d))
+                slice.append(interpolate(a: p0, b: p1, t: (stop - (sum - d)) / d))
                 return slice
             }
             
@@ -221,7 +220,7 @@ public class CheapRuler {
         return slice
     }
     
-    public func bufferPoint (p: [CLLocationDegrees], buffer: CLLocationDistance) -> [CLLocationDegrees] {
+    public func bufferPoint (p: [Double], buffer: Double) -> [Double] {
         let v = buffer / self.ky
         let h = buffer / self.kx
         return [
@@ -232,7 +231,7 @@ public class CheapRuler {
         ]
     }
     
-    public func bufferBBox (bbox: [CLLocationDegrees], buffer: CLLocationDistance) -> [CLLocationDegrees] {
+    public func bufferBBox (bbox: [Double], buffer: Double) -> [Double] {
         let v = buffer / self.ky
         let h = buffer / self.kx
         return [
@@ -243,7 +242,7 @@ public class CheapRuler {
         ]
     }
     
-    public func insideBBox (p: [CLLocationDegrees], bbox: [CLLocationDegrees]) -> Bool {
+    public func insideBBox (p: [Double], bbox: [Double]) -> Bool {
         return p[0] >= bbox[0] &&
             p[0] <= bbox[2] &&
             p[1] >= bbox[1] &&
@@ -251,11 +250,11 @@ public class CheapRuler {
     }
 }
 
-func equals(a: [CLLocationDegrees], b: [CLLocationDegrees]) -> Bool {
+func equals(a: [Double], b: [Double]) -> Bool {
     return a[0] == b[0] && a[1] == b[1]
 }
 
-func interpolate(a: [CLLocationDegrees], b: [CLLocationDegrees], t: Double) -> [CLLocationDegrees] {
+func interpolate(a: [Double], b: [Double], t: Double) -> [Double] {
     let dx = b[0] - a[0]
     let dy = b[1] - a[1]
     return [
